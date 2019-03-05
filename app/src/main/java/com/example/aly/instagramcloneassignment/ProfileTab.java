@@ -49,6 +49,38 @@ public class ProfileTab extends Fragment
 
         final ParseUser parseUser = ParseUser.getCurrentUser();
 
+        if (parseUser.get("profileName") == null)
+        {
+            editProfileName.setText("");
+        }
+
+        else if (parseUser.get("profileBio") == null)
+        {
+            editProfileBio.setText("");
+        }
+
+        else if (parseUser.get("profileProfession") == null)
+        {
+            editProfileProfession.setText("");
+        }
+
+        else if (parseUser.get("profileHobbies") == null)
+        {
+            editProfileHobbies.setText("");
+        }
+
+        else if (parseUser.get("profileFavouriteSports") == null)
+        {
+            editProfileFavouriteSports.setText("");
+        }
+        else {
+            editProfileName.setText(parseUser.get("profileName") + "");
+            editProfileBio.setText(parseUser.get("profileBio") + "");
+            editProfileProfession.setText(parseUser.get("profileProfession") + "");
+            editProfileHobbies.setText(parseUser.get("profileHobbies") + "");
+            editProfileFavouriteSports.setText(parseUser.get("profileFavouriteSports") + "");
+        }
+
         btnProfileUpdate.setOnClickListener(new View.OnClickListener()
         {
             @Override
