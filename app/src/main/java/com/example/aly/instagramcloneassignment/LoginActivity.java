@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 else
                     {
                         final ProgressDialog progressDialog = new ProgressDialog(this);
-                        progressDialog.setMessage("Logging in " + editLoginPassword.getText().toString() + " in progress");
+                        progressDialog.setMessage("Logging in " + editLoginEmail.getText().toString() + " in progress");
                         progressDialog.show();
 
                         ParseUser.logInInBackground(editLoginEmail.getText().toString(),

@@ -86,19 +86,25 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener
                     progressDialog.setMessage("Signing up " + editUserName.getText().toString() + " in progress");
                     progressDialog.show();
 
-                    newUser.signUpInBackground(new SignUpCallback() {
+                    newUser.signUpInBackground(new SignUpCallback()
+                    {
                         @Override
-                        public void done(ParseException e) {
-                            if (e == null) {
-                                FancyToast.makeText(SignIn.this, newUser.get("username") +
-                                                " has signed up successfully.", FancyToast.LENGTH_LONG,
-                                        FancyToast.SUCCESS, true).show();
+                        public void done(ParseException e)
+                        {
+                            if (e == null)
+                                {
+                                    FancyToast.makeText(SignIn.this, newUser.get("username") +
+                                                  " has signed up successfully.", FancyToast.LENGTH_LONG,
+                                            FancyToast.SUCCESS, true).show();
 
-                                transitionToSocialMediaActivity();
-                            } else {
-                                FancyToast.makeText(SignIn.this, e.getMessage(), FancyToast.LENGTH_LONG,
-                                        FancyToast.ERROR, true).show();
-                            }
+                                    transitionToSocialMediaActivity();
+                                }
+
+                                else
+                                    {
+                                        FancyToast.makeText(SignIn.this, e.getMessage(), FancyToast.LENGTH_LONG,
+                                                FancyToast.ERROR, true).show();
+                                    }
 
                             progressDialog.dismiss();
                         }

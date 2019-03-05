@@ -1,29 +1,95 @@
 package com.example.aly.instagramcloneassignment;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProfileTab extends Fragment {
+public class ProfileTab extends Fragment
+{
 
+    private EditText editProfileName, editProfileBio, editProfileProfession, editProfileHobbies,
+                        editProfileFavouriteSports;
+    private Button btnProfileUpdate;
 
-    public ProfileTab() {
+    public ProfileTab()
+    {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+    {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile_tab, container, false);
-    }
+        View view = inflater.inflate(R.layout.fragment_profile_tab, container, false);
 
+        editProfileName = view.findViewById(R.id.editProfileName);
+        editProfileBio = view.findViewById(R.id.editProfileBio);
+        editProfileProfession = view.findViewById(R.id.editProfileProfession);
+        editProfileHobbies = view.findViewById(R.id.editProfileHobbies);
+        editProfileFavouriteSports = view.findViewById(R.id.editProfileFavouriteSports);
+
+        btnProfileUpdate = view.findViewById(R.id.btnProfileUpdate);
+
+        final ParseUser parseUser = ParseUser.getCurrentUser();
+
+        btnProfileUpdate.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                parseUser.put("profileName", editProfileName.getText().toString());
+                parseUser.put("profileBio", editProfileBio.getText().toString());
+                parseUser.put("profileProfession", editProfileProfession.getText().toString());
+                parseUser.put("profileHobbies", editProfileHobbies.getText().toString());
+                parseUser.put("profileFavouriteSports",
+                        editProfileFavouriteSports.getText().toString());
+
+
+                final ProgressDialog progressDialog = new ProgressDialog(getContext());
+                progressDialog.setMessage("Updating profile in progress");
+                progressDialog.show();
+
+                parseUser.saveInBackground(new SaveCallback()
+                {
+                    @Override
+                    public void done(ParseException e)
+                    {
+                        if (e == null)
+                        {
+                            FancyToast.makeText(getContext(), "Profile updated successfully.",
+                                    FancyToast.LENGTH_LONG, FancyToast.INFO, true).show();
+                        }
+
+                        else
+                        {
+                            FancyToast.makeText(getContext(), e.getMessage(), FancyToast.LENGTH_LONG,
+                                    FancyToast.ERROR, true).show();
+                        }
+
+                        progressDialog.dismiss();
+                    }
+                });
+            };
+        });
+        return view;
+    };
 }
+
+
