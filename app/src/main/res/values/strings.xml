@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">InstagramCloneAssignment</string>
+    <string name="title_activity_social_media">SocialMediaActivity</string>
 </resources>

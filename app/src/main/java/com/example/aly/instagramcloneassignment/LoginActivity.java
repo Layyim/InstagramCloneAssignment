@@ -55,6 +55,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (ParseUser.getCurrentUser() != null)
         {
             ParseUser.getCurrentUser().logOut();
+            transitionToSocialMediaActivity();
         }
     }
 
@@ -72,7 +73,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             "Email and Password is required.", FancyToast.LENGTH_LONG,
                             FancyToast.INFO, true).show();
 
-                    break;
+                          break;
                 }
                 else
                     {
@@ -90,6 +91,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                             FancyToast.makeText(LoginActivity.this, user.get("username") +
                                                         " has signed in successfully.", FancyToast.LENGTH_LONG,
                                                     FancyToast.SUCCESS, true).show();
+
+                                            transitionToSocialMediaActivity();
                                     }
                                         else
                                             {
@@ -125,7 +128,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         {
             e.printStackTrace();
         }
+    }
 
-
+    private void transitionToSocialMediaActivity()
+    {
+        Intent intent = new Intent(LoginActivity.this, SocialMediaActivity.class);
+        startActivity(intent);
     }
 }
