@@ -13,7 +13,9 @@
         <activity
             android:name=".SocialMediaActivity"
             android:label="@string/title_activity_social_media"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".SignIn">
             <intent-filter>
