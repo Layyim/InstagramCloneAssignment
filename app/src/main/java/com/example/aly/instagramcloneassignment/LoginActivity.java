@@ -13,7 +13,6 @@ import android.widget.EditText;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
-import com.parse.SignUpCallback;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener
@@ -108,7 +107,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             case R.id.btnSignUpActivity:
             {
-                Intent intent = new Intent(LoginActivity.this, SignIn.class);
+                Intent intent = new Intent(LoginActivity.this, SignUp.class);
                 startActivity(intent);
 
                 break;
@@ -134,5 +133,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     {
         Intent intent = new Intent(LoginActivity.this, SocialMediaActivity.class);
         startActivity(intent);
+        finish();
     }
 }

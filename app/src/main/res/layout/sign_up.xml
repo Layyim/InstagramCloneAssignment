@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#F8692B"
     android:onClick="rootLayoutTapped"
-    tools:context=".SignIn">
+    tools:context=".SignUp">
 
     <ImageView
         android:id="@+id/imageView"

@@ -123,7 +123,7 @@ public class SharePictureTab extends Fragment implements View.OnClickListener
 
                                      else
                                      {
-                                         FancyToast.makeText(getContext(), "Unknown error.",
+                                         FancyToast.makeText(getContext(), "Unknown error: " + e.getMessage(),
                                                  FancyToast.LENGTH_SHORT, FancyToast.ERROR, true).show();
                                      }
 
@@ -173,7 +173,7 @@ public class SharePictureTab extends Fragment implements View.OnClickListener
     {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == 2000)
+        if (requestCode == 2000)
         {
            if (resultCode == Activity.RESULT_OK)
            {

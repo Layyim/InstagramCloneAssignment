@@ -10,13 +10,12 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
-public class SignIn extends AppCompatActivity implements View.OnClickListener
+public class SignUp extends AppCompatActivity implements View.OnClickListener
 {
     private EditText editUserEmail, editUserName, editUserPassword;
     private Button btnSignUp, btnLogin;
@@ -25,7 +24,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sign_in);
+        setContentView(R.layout.sign_up);
 
         setTitle("Sign Up");
 
@@ -70,7 +69,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener
                         editUserName.getText().toString().equals("") ||
                         editUserPassword.getText().toString().equals(""))
                     {
-                        FancyToast.makeText(SignIn.this, "Email, Username and Password is required.", FancyToast.LENGTH_LONG,
+                        FancyToast.makeText(SignUp.this, "Email, Username and Password is required.", FancyToast.LENGTH_LONG,
                                 FancyToast.INFO, true).show();
 
                         break;
@@ -93,7 +92,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener
                         {
                             if (e == null)
                                 {
-                                    FancyToast.makeText(SignIn.this, newUser.get("username") +
+                                    FancyToast.makeText(SignUp.this, newUser.get("username") +
                                                   " has signed up successfully.", FancyToast.LENGTH_LONG,
                                             FancyToast.SUCCESS, true).show();
 
@@ -102,7 +101,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener
 
                                 else
                                     {
-                                        FancyToast.makeText(SignIn.this, e.getMessage(), FancyToast.LENGTH_LONG,
+                                        FancyToast.makeText(SignUp.this, e.getMessage(), FancyToast.LENGTH_LONG,
                                                 FancyToast.ERROR, true).show();
                                     }
 
@@ -116,7 +115,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener
 
             case R.id.btnLogin:
             {
-                Intent intent = new Intent(SignIn.this, LoginActivity.class);
+                Intent intent = new Intent(SignUp.this, LoginActivity.class);
                 startActivity(intent);
 
                 break;
@@ -140,7 +139,8 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener
 
     private void transitionToSocialMediaActivity()
     {
-        Intent intent = new Intent(SignIn.this, SocialMediaActivity.class);
+        Intent intent = new Intent(SignUp.this, SocialMediaActivity.class);
         startActivity(intent);
+        finish();
     }
 }
